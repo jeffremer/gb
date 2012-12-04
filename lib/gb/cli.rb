@@ -38,6 +38,8 @@ module GB
       File.open(@@FILE_NAME, 'w') do |f|
         f.write(options.to_yaml)
       end
+      run 'git config --global alias.fix "gb fix"'
+      run 'git config --global alias.feature "gb feature"'      
       config
     end
     
