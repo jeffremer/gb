@@ -16,8 +16,8 @@ module GB
       run "git checkout -b #{committer}/#{name.join(' ').branchify}"
     end
     
-    desc "install", "Runs the first time configuration"
-    def install
+    desc "setup", "Runs the first time configuration"
+    def setup
       configure
     end
     
