@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = Gb::VERSION
   gem.authors       = ["Jeff Remer"]
   gem.email         = ["jeff@threestrachina.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{GB: Git Branch Helper}
+  gem.summary       = %q{GB (Git Branch) is a small utility for working with git branches}
+  gem.homepage      = "https://github.com/jeffremer/gb"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = ["bin/gb"]
