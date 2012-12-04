@@ -18,7 +18,6 @@ GB (Git Branch) is a small utility for working with git branches.
 
 		$ gb setup
 
-
 ## Usage
 
 		$ gb
