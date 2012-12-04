@@ -33,8 +33,8 @@ module GB
     
     def configure
       options = {}
+      options[:committer] = ask "Committer initials?"
       options[:issue_prefix] = ask "Issue prefix?"
-      options[:committer] = ask "Committer initials?"      
       File.open(@@FILE_NAME, 'w') do |f|
         f.write(options.to_yaml)
       end
