@@ -8,7 +8,9 @@ module GB
     
     desc "co [BRANCH_NAME]", "Checkout a branch first copying the name of the current branch to the clipboard"
     def checkout(name)
-      `#{current_branch} | pbcopy`
+      branch = `git rev-parse --abbrev-ref HEAD`.chomp
+      run "printf \`#{branch}\` | pbcopy"
+      run "export B=#{branch}"
       run "git checkout #{name}"
     end
 
@@ -44,7 +46,7 @@ module GB
       File.open(@@FILE_NAME, 'w') do |f|
         f.write(options.to_yaml)
       end
-      run 'git config --global alias.co "gb checkout"'
+      run 'git config --global alias.cc "gb checkout"'
       run 'git config --global alias.fix "gb fix"'
       run 'git config --global alias.feature "gb feature"'
       config
@@ -56,10 +58,6 @@ module GB
     
     def issue_prefix
       config.issue_prefix
-    end
-
-    def current_branch
-      `git rev-parse --abbrev-ref HEAD`.chomp
     end
   end  
 end
