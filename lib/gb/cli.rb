@@ -6,6 +6,12 @@ module GB
   class CLI < Thor
     include Thor::Actions
     
+    desc "co [BRANCH_NAME]", "Checkout a branch first copying the name of the current branch to the clipboard"
+    def checkout(name)
+      `#{current_branch} | pbcopy`
+      run "git checkout #{name}"
+    end
+
     desc "fix [NUMBER] [SHORT_DESCRIPTION]", "Creates a bug fix branch"
     def fix(number, *name)
       run "git checkout -b #{committer}/#{issue_prefix}-#{number}/#{name.join(' ').branchify}"
@@ -38,8 +44,9 @@ module GB
       File.open(@@FILE_NAME, 'w') do |f|
         f.write(options.to_yaml)
       end
+      run 'git config --global alias.co "gb checkout"'
       run 'git config --global alias.fix "gb fix"'
-      run 'git config --global alias.feature "gb feature"'      
+      run 'git config --global alias.feature "gb feature"'
       config
     end
     
@@ -49,6 +56,10 @@ module GB
     
     def issue_prefix
       config.issue_prefix
+    end
+
+    def current_branch
+      `git rev-parse --abbrev-ref HEAD`
     end
   end  
 end
