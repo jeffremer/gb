@@ -59,7 +59,7 @@ module GB
     end
 
     def current_branch
-      `git rev-parse --abbrev-ref HEAD`
+      `git rev-parse --abbrev-ref HEAD`.chomp
     end
   end  
 end
